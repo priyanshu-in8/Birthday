@@ -257,6 +257,15 @@ const animationTimeline = () => {
     })
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(
+        ".popup",
+        0.5, {
+            visibility: "visible",
+            scale: 1.2,
+            opacity: 1,
+        },
+        "+=1"
+    )
+    .to(
         ".last-smile",
         0.5, {
             rotation: 90,

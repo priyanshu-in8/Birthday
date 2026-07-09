@@ -2,110 +2,128 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Love Animation 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Beat Animation</title>
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  height:100vh;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
-  overflow:hidden;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(to bottom,#ff9aa2,#ffd1dc);
+    position:relative;
 }
 
-/* Floating hearts */
+/* Floating Hearts */
+.floating{
+    position:absolute;
+    font-size:30px;
+    animation:float linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+/* Main Heart */
 .heart{
-  position:fixed;
-  font-size:22px;
-  animation:floatUp linear forwards;
-  pointer-events:none;
-  opacity:0.9;
+    visibility:hidden;
+    position:relative;
+    width:300px;
+    height:300px;
+    transform:rotate(-45deg);
+    overflow:hidden;
+    animation:beat 1s infinite;
+   
 }
 
-@keyframes floatUp{
-  0%{
-    transform:translateY(0) scale(0.6);
-    opacity:0;
-  }
-  10%{opacity:1;}
-  100%{
-    transform:translateY(-120vh) scale(1.4);
-    opacity:0;
-  }
+.heart::before,
+.heart::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    background:inherit;
+    border-radius:50%;
 }
 
-/* Center text */
-.center-text{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  color:white;
-  font-family:Poppins, sans-serif;
-  text-align:center;
-  z-index:10;
+.heart::before{
+    top:-150px;
+    left:0;
 }
 
-.center-text h1{
-  font-size:36px;
+.heart::after{
+    top:0;
+    left:150px;
 }
 
-.center-text p{
-  margin-top:10px;
-  opacity:0.9;
+/* Image inside heart */
+.heart img{
+    width:300px;
+    height:300px;
+    object-fit:cover;
+
+    clip-path: path('M150,75 C150,30 60,30 60,105 C60,180 150,240 150,270 C150,240 240,180 240,105 C240,30 150,30 150,75 Z');
+}
+
+/* Heart beat animation */
+@keyframes beat{
+    0%,100%{
+        transform:rotate(-45deg) scale(1);
+    }
+    50%{
+        transform:rotate(-45deg) scale(1.12);
+    }
+}
+
+/* Text */
+.text{
+    position:absolute;
+    bottom:60px;
+    font-size:40px;
+    font-weight:bold;
+    color:white;
+    text-shadow:0 0 15px #ff1493;
 }
 </style>
 </head>
 
 <body>
 
-<div class="center-text">
-  <h1>💖 Love Everywhere 💖</h1>
-  <p>Tap / Click for more love</p>
+<!-- Floating Hearts -->
+<div class="floating" style="left:5%;animation-duration:8s;">💖</div>
+<div class="floating" style="left:15%;animation-duration:10s;">💕</div>
+<div class="floating" style="left:25%;animation-duration:7s;">💗</div>
+<div class="floating" style="left:35%;animation-duration:9s;">💘</div>
+<div class="floating" style="left:50%;animation-duration:11s;">💞</div>
+<div class="floating" style="left:65%;animation-duration:8s;">💖</div>
+<div class="floating" style="left:75%;animation-duration:12s;">💕</div>
+<div class="floating" style="left:85%;animation-duration:9s;">💗</div>
+<div class="floating" style="left:95%;animation-duration:10s;">💘</div>
+
+<!-- Heart with image -->
+<div class="heart">
+    <img src="img/1.jpeg" alt="Love">
 </div>
 
-<script>
-/* Continuous floating hearts */
-function createHeart(){
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = ["💖","💓","💗","💞","💕"][Math.floor(Math.random()*5)];
-
-  heart.style.left = Math.random()*100 + "vw";
-  heart.style.bottom = "-20px";
-
-  const size = Math.random()*20 + 16;
-  heart.style.fontSize = size + "px";
-
-  const duration = Math.random()*4 + 4;
-  heart.style.animationDuration = duration + "s";
-
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(), duration*1000);
-}
-
-setInterval(createHeart, 300);
-
-/* 💥 Heart burst on tap */
-document.addEventListener("click",(e)=>{
-  for(let i=0;i<12;i++){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerText="💖";
-    h.style.left=e.clientX+(Math.random()*100-50)+"px";
-    h.style.top=e.clientY+(Math.random()*100-50)+"px";
-    h.style.fontSize="26px";
-    h.style.animationDuration="1.2s";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),1200);
-  }
-});
-</script>
+<div class="text">
+    Happy Birthday ❤️
+</div>
 
 </body>
 </html>

@@ -126,3 +126,92 @@ function createHeart(){
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(), duration*1000);
 }
+
+function checkAnswer() {
+    const correctDate = "15/06/2026";
+    const userAnswer = document.getElementById("answer").value.trim();
+
+    if (userAnswer === correctDate) {
+
+        // Show heart animation
+        document.querySelector(".hearth").style.visibility = "visible";
+        setTimeout(()=>{
+  console.log(index);
+    },50000)
+        changeImg();
+
+        // Hide popup
+        document.querySelector(".popup").style.display = "none";
+
+    } else {
+        alert("🥺 Galat jawab! Thoda aur yaad karo ❤️");
+    }
+}
+const quotes = [
+    "❤️ You are my favorite notification.",
+    "💕 Together is my favorite place to be.",
+    "✨ Every love story is beautiful, but ours is my favorite.",
+    "🌹 You make ordinary moments feel magical.",
+    "💖 Some dates are written on calendars, ours is written in my heart.",
+    "🥰 You are the reason behind my smile.",
+    "💫 With you, every moment becomes a memory."
+];
+
+const quoteElement = document.getElementById("quote");
+
+let quoteIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typeEffect() {
+    const currentQuote = quotes[quoteIndex];
+
+    if (!deleting) {
+        quoteElement.textContent =
+            currentQuote.substring(0, charIndex + 1);
+
+        charIndex++;
+
+        if (charIndex === currentQuote.length) {
+            deleting = true;
+            setTimeout(typeEffect, 2000);
+            return;
+        }
+    } else {
+        quoteElement.textContent =
+            currentQuote.substring(0, charIndex - 1);
+
+        charIndex--;
+
+        if (charIndex === 0) {
+            deleting = false;
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+        }
+    }
+
+    setTimeout(typeEffect, deleting ? 40 : 80);
+}
+
+typeEffect();
+
+function changeImg() {
+   const images = [
+    "img/9.jpeg",
+    "img/10.jpeg",
+    "img/11.jpeg",
+    "img/12.jpeg",
+    "img/13.jpeg"
+];
+
+    let index = 0;
+
+    setInterval(() => {
+        document.getElementById("img").src = images[index];
+
+        index++;
+
+        if(index === images.length){
+            index = 0; // repeat slideshow
+        }
+    }, 3000); // 3 seconds
+}

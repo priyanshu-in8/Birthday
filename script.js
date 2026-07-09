@@ -206,7 +206,7 @@ function changeImg() {
     let index = 0;
 
     setInterval(() => {
-        document.getElementById("img").src = images[index];
+        document.getElementById("img").setAttribute("href", images[index]);
 
         index++;
 

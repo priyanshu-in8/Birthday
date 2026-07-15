@@ -128,7 +128,7 @@ function createHeart(){
 }
 
 function checkAnswer() {
-    const correctDate = "15/06/2026";
+    const correctDate = "14 February 2024";
     const userAnswer = document.getElementById("answer").value.trim();
 
     if (userAnswer === correctDate) {
